@@ -1,9 +1,9 @@
 {
-  "name": "@angular-redux/form",
+  "name": "@ortoo/angular-redux-form",
   "version": "6.6.0",
   "description": "Build Angular 2+ forms with Redux",
   "dependencies": {
-    "immutable": "^3.8.1"
+    "immutable": "^4.0.0-rc.7"
   },
   "devDependencies": {
     "@angular-redux/store": "^6.3.0",

@@ -1,4 +1,4 @@
-import {Iterable, Map as ImmutableMap} from 'immutable';
+import {isCollection, Map as ImmutableMap, Record} from 'immutable';
 
 import {FormException} from './form-exception';
 
@@ -24,7 +24,7 @@ export abstract class State {
     for (const k of path) {
       const parent = deepValue;
 
-      if (Iterable.isIterable(deepValue)) {
+      if (isCollectionOrRecord(deepValue)) {
         const m = <ImmutableMap<string, any>> <any> deepValue;
         if (typeof m.get === 'function') {
            deepValue = m.get(k);
@@ -137,7 +137,7 @@ export abstract class State {
       return operations;
     };
 
-    if (Iterable.isIterable(object)) {
+    if (isCollectionOrRecord(object)) {
       return metaOperations(
         // Replace
         (parent: any, key: number | string, value: K) => {
@@ -289,4 +289,8 @@ export abstract class State {
       || (value.length === 0
       || (typeof value.length === 'undefined' && Object.keys(value).length === 0));
   }
+}
+
+function isCollectionOrRecord(maybeCollectionOrRecord: any) {
+  return isCollection(maybeCollectionOrRecord) || Record.isRecord(maybeCollectionOrRecord);
 }

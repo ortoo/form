@@ -24,7 +24,7 @@ export abstract class State {
     for (const k of path) {
       const parent = deepValue;
 
-      if (isCollectionOrRecord(deepValue)) {
+      if (isCollection(deepValue) || Record.isRecord(deepValue)) {
         const m = <ImmutableMap<string, any>> <any> deepValue;
         if (typeof m.get === 'function') {
            deepValue = m.get(k);
@@ -137,7 +137,7 @@ export abstract class State {
       return operations;
     };
 
-    if (isCollectionOrRecord(object)) {
+    if (isCollection(object) || Record.isRecord(object)) {
       return metaOperations(
         // Replace
         (parent: any, key: number | string, value: K) => {
@@ -154,7 +154,7 @@ export abstract class State {
             return parent.mergeDeepIn(Array.isArray(key) ? key : [key], value);
           }
           else {
-            if (ImmutableMap.isMap(value)) {
+            if (ImmutableMap.isMap(object) || Record.isRecord(object)) {
               return parent.mergeDeep(value);
             }
             else {
@@ -289,8 +289,4 @@ export abstract class State {
       || (value.length === 0
       || (typeof value.length === 'undefined' && Object.keys(value).length === 0));
   }
-}
-
-function isCollectionOrRecord(maybeCollectionOrRecord: any) {
-  return isCollection(maybeCollectionOrRecord) || Record.isRecord(maybeCollectionOrRecord);
 }

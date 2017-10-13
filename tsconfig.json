@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es5",
-    "lib": ["es6", "dom"],
+    "module": "es6",
+    "target": "es2017",
+    "lib": ["es2017", "dom"],
     "types": ["node", "chai", "jasmine"],
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,

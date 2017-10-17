@@ -1,6 +1,6 @@
 {
   "name": "@ortoo/angular-redux-form",
-  "version": "6.6.0-1",
+  "version": "6.6.0-2",
   "description": "Build Angular 2+ forms with Redux",
   "dependencies": {
     "immutable": "^4.0.0-rc.7"
